@@ -37,7 +37,6 @@ public class DemoAdapter extends BaseAdapter {
         // 初始化,默认都没有选中
         configCheckMap(false);
 
-
     }
 
     /**
@@ -136,14 +135,10 @@ public class DemoAdapter extends BaseAdapter {
                 }
             }
 
-
             cbCheck.setChecked(isCheckMap.get(position));
 
-
             ViewHolder holder = new ViewHolder();
-
             holder.cbCheck = cbCheck;
-
             holder.tvTitle = tvTitle;
 
             /**
@@ -182,6 +177,5 @@ public class DemoAdapter extends BaseAdapter {
         public CheckBox cbCheck = null;
 
     }
-
 
 }

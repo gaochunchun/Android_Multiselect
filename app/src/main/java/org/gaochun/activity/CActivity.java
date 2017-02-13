@@ -9,7 +9,6 @@ import android.widget.TextView;
 /**
  * 测试主页
  */
-
 public class CActivity extends Activity implements View.OnClickListener{
 
     TextView name;
@@ -33,7 +32,6 @@ public class CActivity extends Activity implements View.OnClickListener{
 
             case R.id.btn_2:    //多选
                 Intent intent2 = new Intent(this, CheckActivity.class);
-                //learnIntent.putExtra(BaseActivity.EXTRA_LEARN, mLearning.getText());
                 intent2.putExtra("v", name.getText());
                 startActivityForResult(intent2, 2);
                 break;

@@ -125,29 +125,25 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
     }
 
 
-    /**
-     * 按钮点击事件
-     */
+
     @Override
     public void onClick(View v) {
 
         /*
-         * 当点击返回的时候
+         * 当点击选中
          */
         if (v == btnCancle) {
-            //finish();
 
             Map<Integer, Boolean> map = adpAdapter.getCheckMap();
             int count = adpAdapter.getCount();
             for (int i = 0; i < count; i++) {
 
-                // 因为List的特性,删除了2个item,则3变成2,所以这里要进行这样的换算,才能拿到删除后真正的position
                 int position = i - (count - adpAdapter.getCount());
                 if (map.get(i) != null && map.get(i)) {
 
                     DemoBean bean = (DemoBean) adpAdapter.getItem(position);
                     Log.i("tag---------------",bean.getTitle());
-
+                    //添加，号
                     if (first) {
                         first = false;
                     } else {
@@ -157,6 +153,7 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
                 }
             }
 
+            //数据传递
             final Intent intent = new Intent();
             intent.putExtra("more", buffer.toString());
             setResult(RESULT_OK, intent);
@@ -172,11 +169,11 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
         }
 
         /*
-         * 当点击删除的时候
+         * 当点击删除
          */
         if (v == btnDelete) {
             /*
-             * 删除算法最复杂,拿到checkBox选择寄存map
+             * 拿到checkBox选择寄存map
              */
             Map<Integer, Boolean> map = adpAdapter.getCheckMap();
             // 获取当前的数据数量
@@ -197,15 +194,13 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
                     } else {
                         map.put(position, false);
                     }
-
                 }
             }
             adpAdapter.notifyDataSetChanged();
-
         }
 
         /*
-         * 当点击全选的时候
+         * 点击全选
          */
         if (v == btnSelectAll) {
 
@@ -213,17 +208,13 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
 
                 // 所有项目全部选中
                 adpAdapter.configCheckMap(true);
-
                 adpAdapter.notifyDataSetChanged();
-
                 btnSelectAll.setText("全不选");
             } else {
 
                 // 所有项目全部不选中
                 adpAdapter.configCheckMap(false);
-
                 adpAdapter.notifyDataSetChanged();
-
                 btnSelectAll.setText("全选");
             }
 
@@ -244,7 +235,6 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
             // 会自动出发CheckBox的checked事件
             holder.cbCheck.toggle();
             adpAdapter.label = false;
-
         }
     }
 }
