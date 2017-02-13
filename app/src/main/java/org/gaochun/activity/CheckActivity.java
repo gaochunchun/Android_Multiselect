@@ -23,34 +23,19 @@ import java.util.Map;
 
 public class CheckActivity extends Activity implements OnClickListener, OnItemClickListener {
 
-    /**
-     * 返回按钮
-     */
+     //返回按钮
     private ViewGroup btnCancle = null;
 
-    /**
-     * 确定按钮
-     */
+     //确定按钮
     private ViewGroup btnAdd = null;
 
-    /**
-     * 选择所有
-     */
+     //选择所有
     private Button btnSelectAll = null;
 
-    /**
-     * 清除所有
-     */
+     //清除所有
     private Button btnDelete = null;
 
-    /**
-     * ListView列表
-     */
     private ListView lvListView = null;
-
-    /**
-     * 适配对象
-     */
     private DemoAdapter adpAdapter = null;
 
     List<DemoBean> mTempList;   //选中的数据
@@ -83,7 +68,6 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
                 DemoBean bean = new DemoBean();
                 bean.setTitle(tag);
                 mTempList.add(bean);
-                //mTagSet.add(tag);
             }
 
         } // else ignored.
@@ -121,10 +105,16 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
 
         demoDatas.add(new DemoBean("张三", true));
         demoDatas.add(new DemoBean("李四", true));
+        demoDatas.add(new DemoBean("李八", true));
+        demoDatas.add(new DemoBean("李的", true));
+        demoDatas.add(new DemoBean("李等", true));
         demoDatas.add(new DemoBean("王五", false));
         demoDatas.add(new DemoBean("赵六", true));
         demoDatas.add(new DemoBean("麻七", true));
         demoDatas.add(new DemoBean("王八", true));
+        demoDatas.add(new DemoBean("王亿", true));
+        demoDatas.add(new DemoBean("王二", true));
+        demoDatas.add(new DemoBean("王三", true));
         demoDatas.add(new DemoBean("赵九", true));
         demoDatas.add(new DemoBean("赵九", true));
 
@@ -156,7 +146,7 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
                 if (map.get(i) != null && map.get(i)) {
 
                     DemoBean bean = (DemoBean) adpAdapter.getItem(position);
-                    Log.i("tag",bean.getTitle());
+                    Log.i("tag---------------",bean.getTitle());
 
                     if (first) {
                         first = false;
@@ -177,9 +167,7 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
          * 当点击增加的时候
          */
         if (v == btnAdd) {
-
             adpAdapter.add(new DemoBean("赵六", true));
-
             adpAdapter.notifyDataSetChanged();
         }
 
@@ -255,6 +243,7 @@ public class CheckActivity extends Activity implements OnClickListener, OnItemCl
 
             // 会自动出发CheckBox的checked事件
             holder.cbCheck.toggle();
+            adpAdapter.label = false;
 
         }
     }

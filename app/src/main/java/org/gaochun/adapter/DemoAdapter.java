@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class DemoAdapter extends BaseAdapter {
 
-
+    public boolean label = true;
     private Context context = null;
     private List<DemoBean> datas = null;
     private List<DemoBean> mTempList = null;
@@ -109,6 +109,7 @@ public class DemoAdapter extends BaseAdapter {
                  * 将选择项加载到map里面寄存
                  */
                 isCheckMap.put(position, isChecked);
+                //setIsCheckMap(isCheckMap);
             }
         });
 
@@ -125,13 +126,17 @@ public class DemoAdapter extends BaseAdapter {
             }
 
             //若存在相同字段此处则会存在进入时多个选中的情况，建议在使用中使用id或者唯一标志作为对比条件
-            if (mTempList.size() > 0) {
-                for (int i = 0; i < mTempList.size(); i++) {
-                    if (bean.getTitle().contains(mTempList.get(i).getTitle())) {
-                        isCheckMap.put(position, true);
+            if (label) {
+                if (mTempList.size() > 0) {
+                    for (int i = 0; i < mTempList.size(); i++) {
+                        if (bean.getTitle().contains(mTempList.get(i).getTitle())) {
+                            isCheckMap.put(position, true);
+                        }
                     }
                 }
             }
+
+
             cbCheck.setChecked(isCheckMap.get(position));
 
 
@@ -169,17 +174,13 @@ public class DemoAdapter extends BaseAdapter {
         return this.isCheckMap;
     }
 
+
     public static class ViewHolder {
 
         public TextView tvTitle = null;
 
         public CheckBox cbCheck = null;
-        public Object data = null;
 
-    }
-
-    public List<DemoBean> getDatas() {
-        return datas;
     }
 
 

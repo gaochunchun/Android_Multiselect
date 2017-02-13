@@ -25,11 +25,11 @@ public class CActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_1:    //单选
+            //case R.id.btn_1:    //单选
                 //Intent intent = new Intent(this, RightPositionActivity.class);
                 //intent.putExtra("one","one");
                 //startActivityForResult(intent, 1);
-                break;
+               // break;
 
             case R.id.btn_2:    //多选
                 Intent intent2 = new Intent(this, CheckActivity.class);
