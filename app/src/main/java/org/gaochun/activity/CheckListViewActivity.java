@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CheckActivity extends Activity implements OnClickListener, OnItemClickListener {
+public class CheckListViewActivity extends Activity implements OnClickListener, OnItemClickListener {
 
      //返回按钮
     private ViewGroup btnCancle = null;

@@ -24,14 +24,14 @@ public class CActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            //case R.id.btn_1:    //单选
-                //Intent intent = new Intent(this, RightPositionActivity.class);
-                //intent.putExtra("one","one");
-                //startActivityForResult(intent, 1);
-               // break;
+            case R.id.btn_1:
+                Intent intent = new Intent(this,CheckRecyclerViewActivity.class);
+                intent.putExtra("one","one");
+                startActivityForResult(intent, 1);
+                break;
 
             case R.id.btn_2:    //多选
-                Intent intent2 = new Intent(this, CheckActivity.class);
+                Intent intent2 = new Intent(this, CheckListViewActivity.class);
                 intent2.putExtra("v", name.getText());
                 startActivityForResult(intent2, 2);
                 break;

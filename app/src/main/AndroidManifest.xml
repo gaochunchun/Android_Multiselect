@@ -17,8 +17,11 @@
         </activity>
 
         <activity
-            android:name=".CheckActivity"
-            android:label="单选多选测试"
+            android:name=".CheckListViewActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".CheckRecyclerViewActivity"
             android:screenOrientation="portrait"/>
     </application>
 
