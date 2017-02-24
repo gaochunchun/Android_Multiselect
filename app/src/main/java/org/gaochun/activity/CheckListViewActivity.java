@@ -61,7 +61,7 @@ public class CheckListViewActivity extends Activity implements OnClickListener, 
         mTempList = new ArrayList<>();
 
         final Intent intent = getIntent();
-        final String learnString = intent.getStringExtra("v");
+        final String learnString = intent.getStringExtra("listview");
         if (!TextUtils.isEmpty(learnString)) {
             final String[] learns = learnString.split(",");
             for (String tag : learns) {
@@ -103,25 +103,15 @@ public class CheckListViewActivity extends Activity implements OnClickListener, 
         // 模拟假数据
         List<DemoBean> demoDatas = new ArrayList<DemoBean>();
 
-        demoDatas.add(new DemoBean("张三", true));
-        demoDatas.add(new DemoBean("李四", true));
-        demoDatas.add(new DemoBean("李八", true));
-        demoDatas.add(new DemoBean("李的", true));
-        demoDatas.add(new DemoBean("李等", true));
-        demoDatas.add(new DemoBean("王五", false));
-        demoDatas.add(new DemoBean("赵六", true));
-        demoDatas.add(new DemoBean("麻七", true));
-        demoDatas.add(new DemoBean("王八", true));
-        demoDatas.add(new DemoBean("王亿", true));
-        demoDatas.add(new DemoBean("王二", true));
-        demoDatas.add(new DemoBean("王三", true));
-        demoDatas.add(new DemoBean("赵九", true));
-        demoDatas.add(new DemoBean("赵九", true));
+        for (int i = 0; i < 20; i++) {
+            demoDatas.add(new DemoBean("测试数据"+i, true));
+        }
+        //demoDatas.add(new DemoBean("赵九", true));
+        //demoDatas.add(new DemoBean("赵九", true));
 
         adpAdapter = new DemoAdapter(this, demoDatas, mTempList);
 
         lvListView.setAdapter(adpAdapter);
-
     }
 
 
@@ -155,7 +145,7 @@ public class CheckListViewActivity extends Activity implements OnClickListener, 
 
             //数据传递
             final Intent intent = new Intent();
-            intent.putExtra("more", buffer.toString());
+            intent.putExtra("lv", buffer.toString());
             setResult(RESULT_OK, intent);
             finish();
         }

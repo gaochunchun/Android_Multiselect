@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-
+import android.widget.AdapterView;
 
 import org.gaochun.adapter.ContactsAdapter;
 import org.gaochun.model.Contact;
@@ -16,6 +17,7 @@ import org.gaochun.model.SideBarView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * ===========================================
@@ -45,8 +47,6 @@ public class CheckRecyclerViewActivity extends Activity implements View.OnClickL
 
         setTitle("联系人");
         handleIntent();
-        //showBackwardView(true);
-        //showForwardView(R.mipmap.ic_back, R.mipmap.ic_back);
 
         initData();
         initView();
@@ -56,7 +56,7 @@ public class CheckRecyclerViewActivity extends Activity implements View.OnClickL
         mTempList = new ArrayList<>();
 
         final Intent intent = getIntent();
-        final String learnString = intent.getStringExtra("t");
+        final String learnString = intent.getStringExtra("recyclerview");
         if (!TextUtils.isEmpty(learnString)) {
             final String[] learns = learnString.split(",");
             for (String tag : learns) {
@@ -78,28 +78,11 @@ public class CheckRecyclerViewActivity extends Activity implements View.OnClickL
         adpAdapter = new ContactsAdapter(contacts, mTempList);
         rvContacts.setAdapter(adpAdapter);
 
-        /*rvContacts.addOnItemTouchListener(new OnItemClickListener() {
+        /*rvContacts.setOnClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void SimpleOnItemClick(BaseQuickAdapter adapter, View itemLayout, int position) {
-                *//*Contact contact = (Contact) adapter.getItem(position);
-                OkLogger.e(contact.getName() + "");*//*
-
-                //adpAdapter.setSelectItem(position);
-
-                //OkLogger.e(itemLayout.getTag() + "------");
-                if (itemLayout.getTag() instanceof ContactAdapter2.ViewHolder) {
-
-
-                    ContactAdapter2.ViewHolder holder = (ContactAdapter2.ViewHolder) itemLayout.getTag();
-
-                    // 会自动出发CheckBox的checked事件
-                    holder.cbCheck.toggle();
-                    adpAdapter.label = false;
-
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
-
         });*/
 
         sideBar = (SideBarView) findViewById(R.id.side_bar);
@@ -123,7 +106,7 @@ public class CheckRecyclerViewActivity extends Activity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-/*        switch (v.getId()) {
+        switch (v.getId()) {
             case R.id.btn:
                 Map<Integer, Boolean> map = adpAdapter.getCheckMap();
                 int count = adpAdapter.getItemCount();
@@ -135,9 +118,8 @@ public class CheckRecyclerViewActivity extends Activity implements View.OnClickL
                     if (map.get(i) != null && map.get(i)) {
 
                         //DemoBean bean = (DemoBean) adpAdapter.getItem(position);
-                        Contact bean = (Contact) adpAdapter.getItem(position);
-                        OkLogger.e(bean.getName());
-
+                        Contact bean = adpAdapter.getItemData(position);
+                        Log.i("tag---------------",bean.getName());
                         if (first) {
                             first = false;
                         } else {
@@ -148,37 +130,15 @@ public class CheckRecyclerViewActivity extends Activity implements View.OnClickL
                 }
 
                 final Intent intent = new Intent();
-                intent.putExtra("one", buffer.toString());
+                intent.putExtra("rv", buffer.toString());
                 setResult(RESULT_OK, intent);
                 finish();
                 break;
 
             case R.id.btndel:
 
-                Map<Integer, Boolean> mapList = adpAdapter.getCheckMap();
-                // 获取当前的数据数量
-                int count2 = adpAdapter.getItemCount();
-                // 进行遍历
-                for (int i = 0; i < count2; i++) {
-
-                    // 因为List的特性,删除了2个item,则3变成2,所以这里要进行这样的换算,才能拿到删除后真正的position
-                    int position = i - (count2 - adpAdapter.getItemCount());
-                    if (mapList.get(i) != null && mapList.get(i)) {
-
-                        Contact bean = (Contact) adpAdapter.getItem(position);
-
-                        //if (bean.isCanRemove()) {
-                        adpAdapter.getCheckMap().remove(i);
-                        adpAdapter.remove(position);
-                        //} else {
-                        //mapList.put(position, false);
-                        //}
-
-                    }
-                }
-                adpAdapter.notifyDataSetChanged();
                 break;
-        }*/
+        }
 
     }
 }

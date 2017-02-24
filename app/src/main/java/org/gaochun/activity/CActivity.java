@@ -26,13 +26,13 @@ public class CActivity extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.btn_1:
                 Intent intent = new Intent(this,CheckRecyclerViewActivity.class);
-                intent.putExtra("one","one");
+                intent.putExtra("recyclerview",name.getText());
                 startActivityForResult(intent, 1);
                 break;
 
             case R.id.btn_2:    //多选
                 Intent intent2 = new Intent(this, CheckListViewActivity.class);
-                intent2.putExtra("v", name.getText());
+                intent2.putExtra("listview", name.getText());
                 startActivityForResult(intent2, 2);
                 break;
 
@@ -46,12 +46,13 @@ public class CActivity extends Activity implements View.OnClickListener{
         switch (requestCode) {
             case 1:
                 if (resultCode == Activity.RESULT_OK) {
-
+                    final String more = data.getExtras().getString("rv");
+                    name.setText(more);
                 }
                 break;
             case 2:
                 if (resultCode == Activity.RESULT_OK) {
-                    final String more = data.getExtras().getString("more");
+                    final String more = data.getExtras().getString("lv");
                     name.setText(more);
 
                 }
